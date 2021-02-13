@@ -1,7 +1,7 @@
 (ns dpsutton.heap-keep
   (:import java.util.PriorityQueue))
 
-n(defn heap-keep
+(defn heap-keep
   [threshold j-u-compare-f]
   (fn heap-keep-reducer
     ([] (PriorityQueue. 30 j-u-compare-f))
@@ -31,7 +31,7 @@ n(defn heap-keep
   (prof/profile
     (doseq [inputs [inputs sorted-low->high sorted-high->low]]
       (time
-n        (->> inputs
+        (->> inputs
              (map (fn [{:keys [data]}] {:data data :score data}))
              (filter (fn [x] (> (:score x) 500000)))
              (sort-by :score #(compare %2 %1))
