@@ -1,0 +1,5 @@
+{:deps {}
+ :aliases {:dev {:jvm-opts ["-Djdk.attach.allowAttachSelf"
+                            "-XX:+UnlockDiagnosticVMOptions"
+                            "-XX:+DebugNonSafepoints"]
+                 :extra-deps {com.clojure-goes-fast/clj-async-profiler {:mvn/version "0.5.0"}}}}}
