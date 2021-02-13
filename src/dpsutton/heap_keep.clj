@@ -2,6 +2,13 @@
   (:import java.util.PriorityQueue))
 
 (defn heap-keep
+  "A transducing reducer that keeps a bounded min-heap under
+  `j-u-compare-f` to keep only the top `threshold` items. Results are
+  returned sorted under this compare function. `threshold` should be
+  an integer and `j-u-compare-f` should be a function of two args
+  returning less than zero, zero, or greater than zero if the first
+  arg is less than, equal to, or greater than the second argument,
+  respectively."
   [threshold j-u-compare-f]
   (fn heap-keep-reducer
     ([] (PriorityQueue. 30 j-u-compare-f))
