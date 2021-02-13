@@ -4,11 +4,11 @@
 (defn heap-keep
   "A transducing reducer that keeps a bounded min-heap under
   `j-u-compare-f` to keep only the top `threshold` items. Results are
-  returned sorted under this compare function. `threshold` should be
-  an integer and `j-u-compare-f` should be a function of two args
-  returning less than zero, zero, or greater than zero if the first
-  arg is less than, equal to, or greater than the second argument,
-  respectively."
+  returned in descending order sorted under this compare
+  function. `threshold` should be an integer and `j-u-compare-f`
+  should be a function of two args returning less than zero, zero, or
+  greater than zero if the first arg is less than, equal to, or
+  greater than the second argument, respectively."
   [threshold j-u-compare-f]
   (fn heap-keep-reducer
     ([] (PriorityQueue. 30 j-u-compare-f))
@@ -29,6 +29,7 @@
          (.offer item))))))
 
 (comment
+  (transduce (map identity) (heap-keep 5 compare) [1 2 3 4 4 5])
   (def inputs (shuffle (map (fn [n] {:data n}) (range 1e6))))
   (def sorted-low->high (sort-by :data inputs))
   (def sorted-high->low (sort-by :data #(compare %2 %1) inputs))
