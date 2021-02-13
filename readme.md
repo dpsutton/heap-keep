@@ -2,8 +2,8 @@
 
 A common pattern in the wild is to see some kind of transducing context that precedes a `sort` and then a `(take N)`. The sorting usually must go after the transducing context and requires the realization of the entire collection, sorting, and then taking the subset that you care about. This reducing function uses a min heap as the accumulator and evicts the smallest element with newer higher ranked elements when full.
 
-| Input | naive seq | transduce then sort | heap-keep transduction
--------------------------
+| Input | naive seq | transduce then sort | heap-keep transduction|
+|-------|-----------|---------------------|-----------------------|
 | shuffled | 3027 ms  | 3191 ms | 273 ms |
 | low->high | 710 ms | 488 ms | 1226 ms |
 | high->low | 1079 ms | 615 ms | 262 ms |
